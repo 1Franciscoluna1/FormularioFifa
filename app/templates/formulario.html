@@ -1,0 +1,55 @@
+<form method="post" action="{{ url_for('insert_user') }}">
+    <div style="display: flex;" class="mb-3">
+        <div class="input-group" style="margin-right: 10px;">
+            <span class="input-group-text" id="basic-addon1">Nombre</span>
+            <input name="firstname" type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">Apellido</span>
+            <input name="lastname" type="text" class="form-control" placeholder="Apellidos" aria-label="Lastname" aria-describedby="basic-addon1" required>
+        </div>
+    </div>
+
+    <div style="display: flex;" class="mb-3">
+        <div class="input-group" style="margin-right: 10px;">
+            <select name="sexo" class="form-select" aria-label="" required>
+                <option selected disabled>--Selecciona tu Sexo Biologico--</option>
+                <option value="1">Mujer</option>
+                <option value="2">Hombre</option>
+            </select>
+            <span class="input-group-text" id="basic-addon1">Sexo</span>
+        </div>
+        <div class="input-group">
+            <select name="estado" class="form-select" aria-label="" required>
+                <option selected disabled>--Selecciona tu Estado--</option>
+                {% for estado in estados %}
+                <option value="{{ estado[0] }}">{{ estado[1] }}</option>
+                {% endfor %}
+            </select>
+            <span class="input-group-text" id="basic-addon1">Estado</span>
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <select name="disciplina" class="form-select" aria-label="" required>
+            <option selected disabled>--Selecciona tu disciplina deportiva--</option>
+            {% for disciplina in disciplinas %}
+                <option value="{{ disciplina[0] }}">{{ disciplina[1] }}</option>
+            {% endfor %}
+        </select>
+        <span class="input-group-text" id="basic-addon1">Disciplina</span>
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Tipo de encuesta</span>
+        <select name="encuesta" class="form-select" aria-label="" required>
+            <option selected disabled>--Selecciona tu tipo de encuesta--</option>
+            <option value="1">Rendimiento Psicologico</option>
+            <option value="2">Estados Emocionales</option>
+        </select>
+    </div>
+      
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit">Comenzar</button>
+    </div>
+</form>
