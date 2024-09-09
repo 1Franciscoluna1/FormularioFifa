@@ -23,7 +23,7 @@
             <select name="estado" class="form-select" aria-label="" required>
                 <option selected disabled>--Selecciona tu Estado--</option>
                 {% for estado in estados %}
-                <option value="{{ estado[0] }}">{{ estado[1] }}</option>
+                <option value="{{ estado.id }}">{{ estado.nombre }}</option>
                 {% endfor %}
             </select>
             <span class="input-group-text" id="basic-addon1">Estado</span>
@@ -34,7 +34,7 @@
         <select name="disciplina" class="form-select" aria-label="" required>
             <option selected disabled>--Selecciona tu disciplina deportiva--</option>
             {% for disciplina in disciplinas %}
-                <option value="{{ disciplina[0] }}">{{ disciplina[1] }}</option>
+                <option value="{{ disciplina.id }}">{{ disciplina.nombre }}</option>
             {% endfor %}
         </select>
         <span class="input-group-text" id="basic-addon1">Disciplina</span>

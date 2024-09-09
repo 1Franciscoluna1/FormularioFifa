@@ -1,6 +1,5 @@
 from flask import render_template,request, redirect, url_for, session
 from . import app
-import sqlite3
 from . import functions
 from datetime import datetime
 
@@ -8,6 +7,7 @@ from datetime import datetime
 def home():
     estados = functions.get_estados()
     disciplinas = functions.get_disciplinas()
+    print(disciplinas)
     return render_template('home.html', estados=estados,disciplinas=disciplinas)
 
 @app.route('/insert_user', methods=['POST'])

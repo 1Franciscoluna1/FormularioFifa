@@ -2,27 +2,27 @@ import sqlite3
 import json
 
 # Conectar a la base de datos
-conn = sqlite3.connect('Database.db')
-cursor = conn.cursor()
+# conn = sqlite3.connect('Database.db')
+# cursor = conn.cursor()
 
-# Crear las tablas
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS preguntas (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    texto TEXT NOT NULL,
-    clase INTEGER NOT NULL
-);
-''')
+# # Crear las tablas
+# cursor.execute('''
+# CREATE TABLE IF NOT EXISTS preguntas (
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     texto TEXT NOT NULL,
+#     clase INTEGER NOT NULL
+# );
+# ''')
 
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS opciones (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    pregunta_id INTEGER,
-    peso INTEGER NOT NULL,
-    texto TEXT NOT NULL,
-    FOREIGN KEY (pregunta_id) REFERENCES preguntas(id)
-);
-''')
+# cursor.execute('''
+# CREATE TABLE IF NOT EXISTS opciones (
+#     id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     pregunta_id INTEGER,
+#     peso INTEGER NOT NULL,
+#     texto TEXT NOT NULL,
+#     FOREIGN KEY (pregunta_id) REFERENCES preguntas(id)
+# );
+# ''')
 
 # JSON de entrada
 data = '''[
@@ -1122,15 +1122,16 @@ data = '''[
 
 # Cargar el JSON
 json_data = json.loads(data)
-
+current_pregunta_id = 1
 # Insertar preguntas y opciones
 for pregunta in json_data:
-    cursor.execute('INSERT INTO preguntas (texto, clase) VALUES (?, ?)', (pregunta['pregunta'], pregunta['clase']))
-    pregunta_id = cursor.lastrowid  # Obtener el ID de la última pregunta insertada
+    print('INSERT INTO preguntas (texto, clase) VALUES (?, ?)', (pregunta['pregunta'], pregunta['clase']))
+    pregunta_id = current_pregunta_id  # Obtener el ID de la última pregunta insertada
 
     for opcion in pregunta['opciones']:
-        cursor.execute('INSERT INTO opciones (pregunta_id, peso, texto) VALUES (?, ?, ?)', (pregunta_id, opcion['peso'], opcion['texto']))
+        print('INSERT INTO opciones (pregunta_id, peso, texto) VALUES (?, ?, ?)', (pregunta_id, opcion['peso'], opcion['texto']))
 
+    current_pregunta_id += 1
 # Guardar los cambios y cerrar la conexión
-conn.commit()
-conn.close()
+# conn.commit()
+# conn.close()
